@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>WCB Cafe - 採用情報（Cタイプ：超シンプル）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- オリジナルCSSの読み込み（ヘッダーとフッター用） -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* =======================================================
+           HTML/CSSの基礎を学ぶための「いちばんシンプル」なスタイル
+           （JSのアニメーションや複雑な配置は一切使っていません）
+        ======================================================= */
+
+      /* 全体のリセットと基本設定 */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #333333;
+        font-family: sans-serif;
+      }
+
+      /* -------------------------------------
+           ① ヒーロー（一番上の大きな画像エリア）
+        ------------------------------------- */
+      .hero {
+        background-image: url("images/outside.webp");
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        /* 文字を中央に揃える */
+        text-align: center;
+        /* 上に余白を作って文字を真ん中あたりに押し下げる */
+        padding-top: 140px;
+        box-sizing: border-box; /* paddingを含めた高さ設定 */
+      }
+      .hero h1 {
+        color: #ffffff;
+        font-size: 40px;
+        margin: 0;
+        letter-spacing: 3px;
+        /* 白文字が見えやすいように黒い影をつける */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+
+      /* -------------------------------------
+           ② 各セクションの共通設定（箱の余白など）
+        ------------------------------------- */
+      .section {
+        /* 上下に80px、左右に20pxの余白 */
+        padding: 80px 20px;
+        /* 中の文字や画像をすべて真ん中寄せ */
+        text-align: center;
+      }
+      /* 背景に色をつけたいセクションだけこのクラスを追加する */
+      .bg-color {
+        background-color: #fffaf7; /* 優しいクリーム色 */
+      }
+
+      /* セクションのタイトルのデザイン */
+      .section-title {
+        font-size: 28px;
+        color: #e58673; /* コーラル色 */
+        margin: 0 0 40px 0;
+        /* タイトルの下に線を引く */
+        border-bottom: 2px solid #e58673;
+        /* 線の長さを文字の幅に合わせるための魔法 */
+        display: inline-block;
+        padding-bottom: 10px;
+      }
+
+      /* -------------------------------------
+           ③ メッセージ部分（ごあいさつ）
+        ------------------------------------- */
+      .message-text {
+        max-width: 600px;
+        margin: 0 auto; /* 右左のmarginをautoにすると中央寄せになる */
+        line-height: 2; /* 行間を広げて読みやすくする */
+        font-size: 16px;
+        margin-bottom: 40px;
+      }
+      .message-images img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover; /* 画像の縦横比を崩さずトリミング */
+        border-radius: 20px; /* 角を少し丸くする */
+        margin: 0 10px; /* 画像同士に少し隙間をあける */
+      }
+
+      /* -------------------------------------
+           ④ 特徴（3つ並べる部分・Flexboxの超基本）
+        ------------------------------------- */
+      .feature-box {
+        display: flex; /* 横並びにする魔法の言葉 */
+        justify-content: center; /* 中央に集める */
+        gap: 20px; /* 箱と箱の間に20pxの隙間を作る */
+        max-width: 900px;
+        margin: 0 auto; /* 中央寄せ */
+      }
+
+      .feature-item {
+        background-color: #ffffff;
+        width: 33%; /* 3つ並べるので幅を約3分の1にする */
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #dddddd; /* 薄いグレーの枠線 */
+        box-sizing: border-box; /* paddingを幅に含める */
+        text-align: left; /* 中の文字は左寄せに戻す */
+      }
+      .feature-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .feature-item h3 {
+        font-size: 18px;
+        color: #e58673;
+        margin: 0 0 10px 0;
+      }
+      .feature-item p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* スマホ向けの幅調整（画面が700pxより小さくなったら適用） */
+      @media (max-width: 700px) {
+        .feature-box {
+          flex-direction: column; /* 縦並びに変える */
+          align-items: center; /* 縦並びのときの中央寄せ */
+        }
+        .feature-item {
+          width: 100%; /* スマホでは幅を100%にして広く使う */
+          max-width: 400px;
+        }
+      }
+
+      /* -------------------------------------
+           ⑤ 募集要項（テーブルの基本）
+        ------------------------------------- */
+      .recruit-table {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto 40px auto; /* 下に40pxの余白 */
+        border-collapse: collapse; /* セルの隙間をなくして一本線にする */
+      }
+      .recruit-table th,
+      .recruit-table td {
+        border: 1px solid #cccccc;
+        padding: 15px;
+        text-align: left;
+      }
+      .recruit-table th {
+        width: 30%;
+        background-color: #fbe6dd; /* 薄いオレンジ */
+        color: #333333;
+      }
+
+      /* -------------------------------------
+           ⑥ ボタン（リンクをボタン風にする）
+        ------------------------------------- */
+      .btn {
+        background-color: #e58673;
+        color: #ffffff;
+        /* inline-blockにすると上下のpaddingやmarginが効くようになる */
+        display: inline-block;
+        padding: 15px 50px;
+        text-decoration: none; /* リンクの下線を消す */
+        border-radius: 30px; /* 両端を丸くする角丸 */
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.3s; /* マウスを乗せた時の変化を0.3秒かけて行う */
+      }
+      .btn:hover {
+        background-color: #d17562; /* マウスを乗せたら少し暗い色にする */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダー（既存のスタイルをそのまま使います） -->
+    <header class="page-header wrapper">
+      <h1 class="align-center">
+        <a href="index.html"><img class="logo" src="images/logo.svg" alt="WCBカフェ ホーム" /></a>
+      </h1>
+      <nav>
+        <ul class="main-nav font-english">
+          <li><a href="news.html">News</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="recruit.html">Recruit</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ① ヒーローエリア -->
+    <div class="hero">
+      <h1>RECRUIT</h1>
+    </div>
+
+    <!-- ② ごあいさつエリア -->
+    <div class="section">
+      <h2 class="section-title">私達と一緒に働きませんか？</h2>
+
+      <p class="message-text">
+        「WCB Cafe」は、こだわりのコーヒーと温かい空間を提供するお店です。<br />
+        未経験の方でも、接客が好き、カフェが好きという方なら大歓迎！<br />
+        イチから丁寧にお教えしますので、安心してご応募ください。
+      </p>
+
+      <div class="message-images">
+        <img src="images/menu8.webp" alt="ラテアート" />
+        <img src="images/menu2.webp" alt="カプレーゼ" />
+      </div>
+    </div>
+
+    <!-- ③ 魅力（アピールポイント）エリア -->
+    <div class="section bg-color">
+      <h2 class="section-title">WCB Cafeの特徴</h2>
+
+      <div class="feature-box">
+        <div class="feature-item">
+          <img src="images/menu8.webp" alt="バリスタスキル" />
+          <h3>1. スキルが身につく</h3>
+          <p>コーヒー豆の知識やラテアートなど、一生モノのカフェスキルが働きながら学べます。</p>
+        </div>
+
+        <div class="feature-item">
+          <img src="images/menu1.webp" alt="チームワーク" />
+          <h3>2. 仲の良いチーム</h3>
+          <p>スタッフ同士の仲が良く、困ったときはお互いにフォローし合える環境です。</p>
+        </div>
+
+        <div class="feature-item">
+          <img src="images/menu9.webp" alt="メニュー開発" />
+          <h3>3. メニュー開発に参加</h3>
+          <p>
+            アルバイトでも新メニューのアイデア出しに参加できます。あなたの考えたスイーツがお店に並ぶかも！
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 募集要項エリア -->
+    <div class="section">
+      <h2 class="section-title">募集要項</h2>
+
+      <!-- テーブル1 -->
+      <table class="recruit-table">
+        <tr>
+          <th>職種</th>
+          <td>バリスタ・ホールスタッフ</td>
+        </tr>
+        <tr>
+          <th>仕事内容</th>
+          <td>ご案内、オーダー、レジ、ドリンク作成など</td>
+        </tr>
+        <tr>
+          <th>時給</th>
+          <td>1,100円〜（交通費支給）</td>
+        </tr>
+      </table>
+
+      <!-- テーブル2 -->
+      <table class="recruit-table">
+        <tr>
+          <th>職種</th>
+          <td>キッチン・調理補助</td>
+        </tr>
+        <tr>
+          <th>仕事内容</th>
+          <td>フードやスイーツの仕込み、調理、片付けなど</td>
+        </tr>
+        <tr>
+          <th>時給</th>
+          <td>1,150円〜（交通費支給）</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ⑤ 応募ボタンエリア -->
+    <div class="section bg-color">
+      <h2 class="section-title">ご応募はこちら</h2>
+      <p style="margin-bottom: 30px">
+        まずはお店の見学だけでも大歓迎です！お気軽にご連絡ください。
+      </p>
+      <a href="contact.html" class="btn">WEBから応募・見学予約をする</a>
+    </div>
+
+    <!-- フッター -->
+    <footer class="page-footer">
+      <div class="copyright">
+        <small>&copy; 2010 WCB Cafe</small>
+      </div>
+    </footer>
+  </body>
+</html>
